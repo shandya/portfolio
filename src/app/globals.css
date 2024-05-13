@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.cursor {
+  position: absolute;
+  z-index: 998;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  box-shadow: 0 0 10rem 10rem rgba(86, 170, 222, 0.487);
+}
+
+.cursor-2 {
+  mix-blend-mode: color;
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  box-shadow: 0 0 5rem 5rem rgba(219, 109, 140, 1);
+}
+
+.bg-filter {
+  background: url('./../../public/noise.svg');
+  background-size: 150px 150px;
+  filter: contrast(400%) brightness(70%);
+  /* filter: blur(30px) contrast(50%) brightness(70%);
+  transform: scale(1.2); */
+  mix-blend-mode: multiply;
+}
+
+.gradient {
+  background: url('./../../public/gradient.jpg');
+  background-size: 100% auto;
+}
+
+.gradient-2 {
+  background: url('./../../public/gradient-2.jpg');
+  background-size: 100% auto;
+}
