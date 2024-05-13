@@ -13,6 +13,10 @@ export default function Home() {
   const workData = WorkInfo.Work
   const portfolioData = PortfolioInfo.Portfolio
 
+  const Arrow = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z" fill='#31ecff'/></svg>
+  )
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
       <section className="px-4 w-full lg:fixed top-0 left-0 z-50">
@@ -117,7 +121,16 @@ there are still a lot to learn!</p>
                             </span>
                           ))}
                         </div>
-                        {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>}
+                        <div className="">
+                          {item.external_url &&
+                            <a className="text-[0.7em] flex gap-2 items-center underline underline-offset-4" href={item.external_url} target="_blank">
+                              <span>External url</span>
+                              <div className="scale-[0.6] -ml-2">
+                                <Arrow />
+                              </div>
+                            </a>
+                          }
+                        </div>
                       </td>
                     </tr>
                   ))}
