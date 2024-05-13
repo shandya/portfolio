@@ -5,8 +5,12 @@ import { useState, useEffect } from 'react';
 
 export default function Gradient() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [positionGradient1, setPositionGradient1] = useState(0);
-  const [positionGradient2, setPositionGradient2] = useState(0);
+  const [positionGradient1, setPositionGradient1] = useState(Math.random() * 100);
+  const [positionGradient2, setPositionGradient2] = useState(Math.random() * 100);
+
+  const speedGradient1 = Math.random() / 2;
+  const speedGradient2 = Math.random() / 2;
+
 
   useEffect(() => {
     const updateMousePosition = (e) => {
@@ -19,7 +23,7 @@ export default function Gradient() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPositionGradient1((prevPosition) => (prevPosition + 0.1));
+      setPositionGradient1((prevPosition) => (prevPosition + speedGradient1));
     }, 100);
 
     return () => clearInterval(interval);
@@ -27,7 +31,7 @@ export default function Gradient() {
 
   useEffect(() => {
     const interval2 = setInterval(() => {
-      setPositionGradient2((prevPosition) => (prevPosition + 0.05));
+      setPositionGradient2((prevPosition) => (prevPosition + speedGradient2));
     }, 100); 
 
     return () => clearInterval(interval2);
