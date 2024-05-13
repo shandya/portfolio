@@ -47,35 +47,36 @@ export default function Archive() {
             </tbody>
           </table>
 
-
-          <table className="-mx-4 lg:hidden">
-            <thead className="mb-10 sticky bg-[#31ecff] top-0 z-10 bg-opacity-30 text-[#ccdbe0]">
-              <tr className="text-left text-sm font-semibold">
-                <th className="p-4">Year</th>
-                <th className="p-4">Project</th>
-              </tr>
-            </thead>
-            <tbody>
-              {portfolioData.map((item, index) => (
-                <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
-                  <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top">{item.year}</td>
-                  <td className="px-4 py-5 flex flex-col gap-4">
-                    {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}
-                    {item.client && <p className="leading-tight text-sm">{item.client}</p>}
-                    {item.made_at && <p className="leading-tight text-sm">{item.made_at}</p>}
-                    <div className="flex flex-wrap gap-3">
-                      {item.tags.split(',').map((item, i) => (
-                        <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                    {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>}
-                  </td>
+          <div className="-mx-4">
+            <table className="lg:hidden max-w-full">
+              <thead className="mb-10 sticky bg-[#31ecff] top-0 z-10 bg-opacity-30 text-[#ccdbe0]">
+                <tr className="text-left text-sm font-semibold">
+                  <th className="p-4">Year</th>
+                  <th className="p-4">Project</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {portfolioData.map((item, index) => (
+                  <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                    <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top">{item.year}</td>
+                    <td className="px-4 py-5 flex flex-col gap-4">
+                      {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}
+                      {item.client && <p className="leading-tight text-sm">{item.client}</p>}
+                      {item.made_at && <p className="leading-tight text-sm">{item.made_at}</p>}
+                      <div className="flex flex-wrap gap-3">
+                        {item.tags.split(',').map((item, i) => (
+                          <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                      {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <footer className="py-10">

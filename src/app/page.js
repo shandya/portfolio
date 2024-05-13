@@ -59,28 +59,31 @@ there are still a lot to learn!</p>
           <div className="w-full md:w-1/2 ml-auto px-4">
             <h2 className="text-[#31ecff] opacity-60 text-lg mb-4 font-semibold">Experience</h2>
 
-            <table className="-mx-4 w-full">
-              <tbody>
-                {workData.map((item, index) => (
-                  <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
-                    <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top whitespace-nowrap w-30">{item.time}</td>
-                    <td className="px-4 py-5 flex flex-col gap-4">
-                      {item.title && <h3 className="font-semibold leading-tight">{item.title}</h3>}
-                      {item.company_name && <p className="leading-tight text-sm">{item.company_name}</p>}
-                      {item.location && <p className="leading-tight text-sm">{item.location}</p>}
-                      {/* <div className="flex flex-wrap gap-3">
-                        {item.tags.split(',').map((item, i) => (
-                          <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
-                            {item}
-                          </span>
-                        ))}
-                      </div> */}
-                      {/* {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>} */}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="-mx-4">
+              <table className="w-full">
+                <tbody>
+                  {workData.map((item, index) => (
+                    <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                      <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top whitespace-nowrap w-30">{item.time}</td>
+                      <td className="px-4 py-5 flex flex-col gap-4">
+                        {item.title && <h3 className="font-semibold leading-tight">{item.title}</h3>}
+                        {item.company_name && <p className="leading-tight text-sm">{item.company_name}</p>}
+                        {item.location && <p className="leading-tight text-sm">{item.location}</p>}
+                        {/* <div className="flex flex-wrap gap-3">
+                          {item.tags.split(',').map((item, i) => (
+                            <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
+                              {item}
+                            </span>
+                          ))}
+                        </div> */}
+                        {/* {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>} */}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
             <p className="mt-8 inline-block text-[#ccdbe0] text-sm">Request for full resume? <a href="mailto:shandy.ardiansyah@gmail.com" className="text-[#31ecff]">Mail me.</a></p>
           </div>
         </div>
@@ -91,34 +94,36 @@ there are still a lot to learn!</p>
           <div className="w-full md:w-1/2 ml-auto px-4">
             <h2 className="text-[#31ecff] opacity-60 text-lg mb-4 font-semibold">Projects</h2>
 
-            <table className="-mx-4 w-full">
-              {/* <thead className="mb-10 sticky bg-[#31ecff] top-0 z-10 bg-opacity-30 text-[#ccdbe0]">
-                <tr className="text-left text-sm font-semibold">
-                  <th className="p-4">Year</th>
-                  <th className="p-4">Project</th>
-                </tr>
-              </thead> */}
-              <tbody>
-                {portfolioData.filter((item) => (item.highlight)).map((item, index) => (
-                  <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
-                    <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top w-32">{item.year}</td>
-                    <td className="px-4 py-5 flex flex-col gap-4">
-                      {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}
-                      {/* {item.client && <p className="leading-tight text-sm">{item.client}</p>}
-                      {item.made_at && <p className="leading-tight text-sm">{item.made_at}</p>} */}
-                      <div className="flex flex-wrap gap-3">
-                        {item.tags.split(',').map((item, i) => (
-                          <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                      {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>}
-                    </td>
+            <div className="-mx-4">
+              <table className="w-full">
+                {/* <thead className="mb-10 sticky bg-[#31ecff] top-0 z-10 bg-opacity-30 text-[#ccdbe0]">
+                  <tr className="text-left text-sm font-semibold">
+                    <th className="p-4">Year</th>
+                    <th className="p-4">Project</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead> */}
+                <tbody>
+                  {portfolioData.filter((item) => (item.highlight)).map((item, index) => (
+                    <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                      <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top w-32">{item.year}</td>
+                      <td className="px-4 py-5 flex flex-col gap-4">
+                        {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}
+                        {/* {item.client && <p className="leading-tight text-sm">{item.client}</p>}
+                        {item.made_at && <p className="leading-tight text-sm">{item.made_at}</p>} */}
+                        <div className="flex flex-wrap gap-3">
+                          {item.tags.split(',').map((item, i) => (
+                            <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                        {item.external_url && <a className="text-sm line-clamp-1" href={item.external_url} target="_blank">{item.external_url.replace('https://', '')}</a>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <a href="/archive" className="mt-8 inline-block text-[#ccdbe0] text-sm">View Full Archive</a>
           </div>
         </div>
