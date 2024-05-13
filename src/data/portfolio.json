@@ -73,15 +73,6 @@
       "client": "SAGA",
       "made_at": ""
     }, {
-      "name": "Dancow Brand Site", 
-      "tags": "Drupal, CSS3, jQuery",
-      "external_url": "https://www.dancow.co.id",
-      "description": "",
-      "year": "2021",
-      "highlight": true,
-      "client": "Dancow",
-      "made_at": "Wunderman Thompson Indonesia"
-    }, {
       "name": "Lactogrow Brand Site Revamp", 
       "tags": "Drupal, CSS3, jQuery",
       "external_url": "https://www.lactoclub.co.id",
@@ -143,6 +134,15 @@
       "year": "2019",
       "highlight": true,
       "client": "Nutea",
+      "made_at": "Wunderman Thompson Indonesia"
+    }, {
+      "name": "Dancow Brand Site", 
+      "tags": "Drupal, CSS3, jQuery",
+      "external_url": "https://www.dancow.co.id",
+      "description": "",
+      "year": "2018-2021",
+      "highlight": true,
+      "client": "Dancow",
       "made_at": "Wunderman Thompson Indonesia"
     }, {
       "name": "Opera #DaripadaNunggu", 
