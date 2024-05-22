@@ -29,16 +29,16 @@ export default function Home() {
             <nav className="mt-10">
               <ul className="text-[#ccdbe0] flex lg:flex-col gap-4 flex-wrap text-sm lg:text-base">
                 <li>
-                  <Link className="lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#about">About</Link>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#about">About</Link>
                 </li>
                 <li>
-                  <Link className="lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#experience">Experience</Link>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#experience">Experience</Link>
                 </li>
                 <li>
-                  <Link className="lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#projects">Projects</Link>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#projects">Projects</Link>
                 </li>
                 <li>
-                  <Link className="lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/archive">Archive</Link>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/archive">Archive</Link>
                 </li>
               </ul>
             </nav>
@@ -68,7 +68,7 @@ there are still a lot to learn!</p>
               <table className="w-full">
                 <tbody>
                   {workData.map((item, index) => (
-                    <tr key={index} className="border-b border-slate-300 border-opacity-30 lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                    <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                       <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top whitespace-nowrap w-30">{item.time}</td>
                       <td className="px-4 py-5 flex flex-col gap-4">
                         {item.title && <h3 className="font-semibold leading-tight">{item.title}</h3>}
@@ -109,7 +109,7 @@ there are still a lot to learn!</p>
                 </thead> */}
                 <tbody>
                   {portfolioData.filter((item) => (item.highlight)).map((item, index) => (
-                    <tr key={index} className="border-b border-slate-300 border-opacity-30 lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                    <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                       <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top w-32">{item.year}</td>
                       <td className="px-4 py-5 flex flex-col gap-4">
                         {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}

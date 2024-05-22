@@ -47,7 +47,7 @@ export default function Archive() {
             </thead>
             <tbody>
               {portfolioData.map((item, index) => (
-                <tr key={index} className="border-b border-slate-300 border-opacity-30 lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                   <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 text-sm text-[#ccdbe0]`}>{item.year}</td>
                   <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 font-semibold leading-tight`}>{item.name}</td>
                   <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 leading-tight text-sm`}>{item.client}</td>
@@ -77,7 +77,7 @@ export default function Archive() {
               </thead>
               <tbody>
                 {portfolioData.map((item, index) => (
-                  <tr key={index} className="border-b border-slate-300 border-opacity-30 lg:opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
+                  <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                     <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top">{item.year}</td>
                     <td className="px-4 py-5 flex flex-col gap-4">
                       {item.name && <h3 className="font-semibold leading-tight">{item.name}</h3>}
