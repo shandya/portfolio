@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function Gradient() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // const [position, setPosition] = useState({ x: 0, y: 0 });
   const [positionGradient1, setPositionGradient1] = useState(Math.random() * 100);
   const [positionGradient2, setPositionGradient2] = useState(Math.random() * 100);
 
@@ -12,14 +12,14 @@ export default function Gradient() {
   const speedGradient2 = Math.random() / 2;
 
 
-  useEffect(() => {
-    const updateMousePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
+  // useEffect(() => {
+  //   const updateMousePosition = (e) => {
+  //     setPosition({ x: e.clientX, y: e.clientY });
+  //   };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
+  //   window.addEventListener('mousemove', updateMousePosition);
+  //   return () => window.removeEventListener('mousemove', updateMousePosition);
+  // }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {

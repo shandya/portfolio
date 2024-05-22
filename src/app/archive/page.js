@@ -1,13 +1,29 @@
+
+"use client"
+
+import React, { useState } from 'react';
+import Link from 'next/link'
 import PortfolioInfo from '@/data/portfolio.json'
 
 import Gradient from "../components/Gradient";
+import Modal from '../components/Modal';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Archive() {
   const portfolioData = PortfolioInfo.Portfolio
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const Arrow = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z" fill='#31ecff'/></svg>
-  )
+  const handleOpenModal = (itemDetails) => {
+    if (itemDetails) {
+      setModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-10 md:py-16 lg:py-24">
@@ -32,11 +48,11 @@ export default function Archive() {
             <tbody>
               {portfolioData.map((item, index) => (
                 <tr key={index} className="border-b border-slate-300 border-opacity-30 md:opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
-                  <td className="px-4 py-5 text-sm text-[#ccdbe0]">{item.year}</td>
-                  <td className="px-4 py-5 font-semibold leading-tight">{item.name}</td>
-                  <td className="px-4 py-5 leading-tight text-sm">{item.client}</td>
-                  <td className="px-4 py-5 leading-tight text-sm">{item.made_at}</td>
-                  <td className="px-4 py-5 flex flex-wrap gap-3">
+                  <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 text-sm text-[#ccdbe0]`}>{item.year}</td>
+                  <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 font-semibold leading-tight`}>{item.name}</td>
+                  <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 leading-tight text-sm`}>{item.client}</td>
+                  <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 leading-tight text-sm`}>{item.made_at}</td>
+                  <td onClick={handleOpenModal(item.details)} className={`${item.details ? 'cursor-pointer' : ''} px-4 py-5 flex flex-wrap gap-3`}>
                     {item.tags.split(',').map((item, i) => (
                       <span key={i} className="text-[#31ecff] py-1 px-3 bg-opacity-30 bg-[#31ecff] inline-block rounded-3xl text-[0.7em]">
                         {item}
@@ -78,9 +94,7 @@ export default function Archive() {
                         {item.external_url &&
                           <a className="text-[0.7em] flex gap-2 items-center underline underline-offset-4" href={item.external_url} target="_blank">
                             <span>External url</span>
-                            <div className="scale-[0.6] -ml-2">
-                              <Arrow />
-                            </div>
+                            <FontAwesomeIcon icon={faArrowRight} className="-rotate-45 h-3" />
                           </a>
                         }
                       </div>
@@ -93,11 +107,20 @@ export default function Archive() {
         </div>
 
         <footer className="py-10">
-          <a href="/" className="mb-2 inline-block text-[#ccdbe0]">Back to home</a>
+          <Link href="/" className="mb-2 inline-block text-[#ccdbe0]">Back to home</Link>
         </footer>
       </section>
 
       <Gradient />
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title="Modal Title"
+        description="This is a description of the modal."
+        image="https://via.placeholder.com/400"
+      />
+
     </main>
   );
 }

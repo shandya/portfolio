@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from 'next/link'
 
 import WorkInfo from '@/data/work.json'
 import PortfolioInfo from '@/data/portfolio.json'
@@ -6,16 +6,14 @@ import PortfolioInfo from '@/data/portfolio.json'
 import Gradient from "@/app/components/Gradient";
 import Footer from "@/app/components/Footer";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import "@/app/globals.css";
 
 export default function Home() {
   const workData = WorkInfo.Work
   const portfolioData = PortfolioInfo.Portfolio
-
-  const Arrow = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z" fill='#31ecff'/></svg>
-  )
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
@@ -28,16 +26,16 @@ export default function Home() {
             <nav className="mt-10">
               <ul className="text-[#ccdbe0] flex lg:flex-col gap-4 flex-wrap text-sm lg:text-base">
                 <li>
-                  <a className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#about">About</a>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#about">About</Link>
                 </li>
                 <li>
-                  <a className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#experience">Experience</a>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#experience">Experience</Link>
                 </li>
                 <li>
-                  <a className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#projects">Projects</a>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="#projects">Projects</Link>
                 </li>
                 <li>
-                  <a className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/archive">Archive</a>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/archive">Archive</Link>
                 </li>
               </ul>
             </nav>
@@ -88,7 +86,7 @@ there are still a lot to learn!</p>
               </table>
             </div>
 
-            <p className="mt-8 inline-block text-[#ccdbe0] text-sm">Request for full resume? <a href="mailto:shandy.ardiansyah@gmail.com" className="text-[#31ecff]">Mail me.</a></p>
+            <p className="mt-8 inline-block text-[#ccdbe0] text-sm">Request for full resume? <Link href="mailto:shandy.ardiansyah@gmail.com" className="text-[#31ecff]">Mail me.</Link></p>
           </div>
         </div>
       </section>
@@ -123,12 +121,10 @@ there are still a lot to learn!</p>
                         </div>
                         <div className="">
                           {item.external_url &&
-                            <a className="text-[0.7em] flex gap-2 items-center underline underline-offset-4" href={item.external_url} target="_blank">
+                            <Link className="text-[0.7em] flex gap-2 items-center underline underline-offset-4" href={item.external_url} target="_blank">
                               <span>External url</span>
-                              <div className="scale-[0.6] -ml-2">
-                                <Arrow />
-                              </div>
-                            </a>
+                              <FontAwesomeIcon icon={faArrowRight} className="-rotate-45 h-3" />
+                            </Link>
                           }
                         </div>
                       </td>
@@ -137,7 +133,7 @@ there are still a lot to learn!</p>
                 </tbody>
               </table>
             </div>
-            <a href="/archive" className="mt-8 inline-block text-[#ccdbe0] text-sm">View Full Archive</a>
+            <Link href="/archive" className="mt-8 inline-block text-[#ccdbe0] text-sm">View Full Archive</Link>
           </div>
         </div>
       </section>

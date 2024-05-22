@@ -11,7 +11,7 @@
       "made_at": ""
     }, {
       "name": "Gagasan Pemuda", 
-      "tags": "NuxtJS, Vue, Tailwind, CSS3",
+      "tags": "NuxtJS, Vue, Tailwind, CSS3, REST API",
       "external_url": "",
       "description": "",
       "year": "2023",
@@ -19,8 +19,17 @@
       "client": "Gagasan Pemuda",
       "made_at": "FAS"
     }, {
+      "name": "CUiT", 
+      "tags": "NuxtJS, Vue, Tailwind, CSS3, REST API",
+      "external_url": "",
+      "description": "",
+      "year": "2023",
+      "highlight": true,
+      "client": "Komune",
+      "made_at": "FAS"
+    }, {
       "name": "Ideafest 2023", 
-      "tags": "NextJS, React, TypeScript, CSS3",
+      "tags": "NextJS, React, TypeScript, CSS3, REST API",
       "external_url": "https://ideafest.id",
       "description": "",
       "year": "2023",
@@ -38,7 +47,7 @@
       "made_at": ""
     }, {
       "name": "Pina Advice Board", 
-      "tags": "NextJS, Tailwind, Javascript",
+      "tags": "NextJS, Tailwind, Javascript, REST API",
       "external_url": "",
       "description": "",
       "year": "2023",
