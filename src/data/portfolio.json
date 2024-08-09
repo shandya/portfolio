@@ -1,11 +1,29 @@
 {
   "Portfolio": [
     {
-      "name": "Paragon CSR", 
-      "tags": "NextJS, Tailwind",
+      "name": "Indosat Collabonation", 
+      "tags": "NuxtJS, Vue, Tailwind, CSS3, REST API",
       "external_url": "",
       "description": "",
       "year": "2024",
+      "highlight": false,
+      "client": "SAGA",
+      "made_at": ""
+    }, {
+      "name": "Paragon CSR Phase 2", 
+      "tags": "Javascript, NextJS, React, CSS3, Tailwind, REST API",
+      "external_url": "",
+      "description": "",
+      "year": "2024",
+      "highlight": false,
+      "client": "SAGA",
+      "made_at": ""
+    }, {
+      "name": "OCBC Phase 5", 
+      "tags": "Javascript, Alpine JS, Tailwind, CSS3, REST API",
+      "external_url": "",
+      "description": "",
+      "year": "2023",
       "highlight": false,
       "client": "SAGA",
       "made_at": ""
