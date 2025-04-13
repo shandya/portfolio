@@ -1,6 +1,16 @@
 {
   "Portfolio": [
     {
+      "name": "BIONS Middle Office", 
+      "tags": "Javascript, React, Bootstrap, CSS3, REST API, Microfrontend",
+      "external_url": "",
+      "description": "Developed and maintained Middle Office CMS modules for the company mobile app using React.js.",
+      "year": "2024-2025",
+      "highlight": true,
+      "client": "BNI Sekuritas",
+      "made_at": "Askara Tech"
+    },
+    {
       "name": "Indosat Collabonation", 
       "tags": "NuxtJS, Vue, Tailwind, CSS3, REST API",
       "external_url": "",
@@ -69,7 +79,7 @@
       "external_url": "",
       "description": "",
       "year": "2023",
-      "highlight": false,
+      "highlight": true,
       "client": "nvizionlab",
       "made_at": ""
     }, {
@@ -132,7 +142,7 @@
       "external_url": "",
       "description": "",
       "year": "2020",
-      "highlight": true,
+      "highlight": false,
       "client": "Changi Airport",
       "made_at": "Wunderman Thompson Indonesia"
     }, {
