@@ -1,6 +1,13 @@
 {
 "Work": [
   { 
+    "title": "React Developer", 
+    "company_name": "BNI Sekuritas",
+    "location": "Jakarta, Indonesia",
+    "time": "2024 - Present",
+    "job_desc": "<ul><li>Building and maintaining Middle Office CMS modules for the company mobile app using React.js.</li><li>Developing and integrating micro-frontend architecture using Module Federations to decouple features into independently deployable modules.</li><li>Working closely with with Backend, QA, and Business Analyst teams to align requirements, validate features, and smooth integration across middle office and front end app.</li></ul>"
+  },
+  { 
     "title": "Sr. Front End Developer", 
     "company_name": "Famous Allstars",
     "location": "Jakarta, Indonesia",
