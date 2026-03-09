@@ -1,9 +1,8 @@
 
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-import PortfolioInfo from '@/data/portfolio.json'
 
 import Gradient from "../components/Gradient";
 import Modal from '../components/Modal';
@@ -12,8 +11,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Archive() {
-  const portfolioData = PortfolioInfo.Portfolio
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/portfolio')
+      .then((res) => res.json())
+      .then((data) => {
+        setPortfolioData(data.Portfolio ?? []);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load portfolio:', err);
+        setIsLoading(false);
+      });
+  }, []);
+
 
   const handleOpenModal = (itemDetails) => {
     if (itemDetails) {
@@ -33,6 +47,9 @@ export default function Archive() {
           <h1 className="text-4xl font-bold text-[#31ecff] opacity-60">Archive</h1>
         </header>
 
+        {isLoading ? (
+          <p className="text-[#ccdbe0] opacity-60 text-sm animate-pulse">Loading projects...</p>
+        ) : (
         <div className="">
           <table className="-mx-4 hidden lg:block">
             <thead className="mb-10 sticky bg-[#31ecff] top-0 z-10 bg-opacity-30 text-[#ccdbe0]">
@@ -105,6 +122,7 @@ export default function Archive() {
             </table>
           </div>
         </div>
+        )}
 
         <footer className="py-10">
           <Link href="/" className="mb-2 inline-block text-[#ccdbe0]">Back to home</Link>

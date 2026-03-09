@@ -1,8 +1,6 @@
 import Link from 'next/link'
- 
-import WorkInfo from '@/data/work.json'
-import PortfolioInfo from '@/data/portfolio.json'
 
+import { getPortfolioData, getWorkData } from '@/lib/notion';
 import Gradient from "@/app/components/Gradient";
 import Footer from "@/app/components/Footer";
 
@@ -14,9 +12,16 @@ export const metadata = {
   description: 'Portfolio website'
 }
 
-export default function Home() {
-  const workData = WorkInfo.Work
-  const portfolioData = PortfolioInfo.Portfolio
+export const dynamic = 'force-dynamic'; // Always render at request time (Notion data is live)
+export const revalidate = 60; // Revalidate every 60 seconds
+
+
+export default async function Home() {
+  const [portfolioData, workData] = await Promise.all([
+    getPortfolioData(),
+    getWorkData(),
+  ]);
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
