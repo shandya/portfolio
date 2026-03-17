@@ -1,7 +1,4 @@
 import Link from 'next/link'
- 
-import WorkInfo from '@/data/work.json'
-import PortfolioInfo from '@/data/portfolio.json'
 
 import Gradient from "@/app/components/Gradient";
 import Footer from "@/app/components/Footer";
@@ -14,9 +11,17 @@ export const metadata = {
   description: 'Portfolio website'
 }
 
-export default function Home() {
-  const workData = WorkInfo.Work
-  const portfolioData = PortfolioInfo.Portfolio
+export default async function Home() {
+  const [portfolioRes, workRes] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/portfolio/highlights?size=100`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works?size=100`),
+  ])
+
+  const portfolioJson = await portfolioRes.json()
+  const workJson = await workRes.json()
+
+  const portfolioData = portfolioJson.data
+  const workData = workJson.data
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
