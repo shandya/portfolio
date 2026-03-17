@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link'
 
 import Gradient from "../components/Gradient";
@@ -10,14 +10,51 @@ import Modal from '../components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+const PAGE_SIZE = 20;
+
 export default function Archive() {
   const [portfolioData, setPortfolioData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const sentinelRef = useRef(null);
+  const loadingRef = useRef(false);
+  const hasMoreRef = useRef(true);
+  const fetchedPages = useRef(new Set());
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio?size=100`)
+    if (fetchedPages.current.has(page)) return;
+    fetchedPages.current.add(page);
+
+    setLoading(true);
+    loadingRef.current = true;
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio?page=${page}&size=${PAGE_SIZE}`)
       .then((res) => res.json())
-      .then((json) => setPortfolioData(json.data));
+      .then((json) => {
+        setPortfolioData((prev) => [...prev, ...json.data]);
+        const more = json.meta.currentPage < json.meta.totalPages;
+        setHasMore(more);
+        hasMoreRef.current = more;
+      })
+      .finally(() => {
+        setLoading(false);
+        loadingRef.current = false;
+      });
+  }, [page]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMoreRef.current && !loadingRef.current) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const handleOpenModal = (itemDetails) => {
@@ -109,6 +146,10 @@ export default function Archive() {
               </tbody>
             </table>
           </div>
+        </div>
+
+        <div ref={sentinelRef} className="py-4 text-center">
+          {loading && <span className="text-[#ccdbe0] text-sm opacity-60">Loading...</span>}
         </div>
 
         <footer className="py-10">
