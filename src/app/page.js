@@ -13,8 +13,8 @@ export const metadata = {
 
 export default async function Home() {
   const [portfolioRes, workRes] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/portfolio/highlights?size=100`),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works?size=100`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio/highlights?size=100`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works?size=100`),
   ])
 
   const portfolioJson = await portfolioRes.json()
@@ -113,7 +113,7 @@ there are still a lot to learn!</p>
                   </tr>
                 </thead> */}
                 <tbody>
-                  {portfolioData.filter((item) => (item.highlight)).map((item, index) => (
+                  {portfolioData.map((item, index) => (
                     <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                       <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top w-32">{item.year}</td>
                       <td className="px-4 py-5 flex flex-col gap-4">

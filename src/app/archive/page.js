@@ -1,9 +1,8 @@
 
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-import PortfolioInfo from '@/data/portfolio.json'
 
 import Gradient from "../components/Gradient";
 import Modal from '../components/Modal';
@@ -12,8 +11,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Archive() {
-  const portfolioData = PortfolioInfo.Portfolio
+  const [portfolioData, setPortfolioData] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio?size=100`)
+      .then((res) => res.json())
+      .then((json) => setPortfolioData(json.data));
+  }, []);
 
   const handleOpenModal = (itemDetails) => {
     if (itemDetails) {
