@@ -1,7 +1,4 @@
 import Link from 'next/link'
- 
-import WorkInfo from '@/data/work.json'
-import PortfolioInfo from '@/data/portfolio.json'
 
 import Gradient from "@/app/components/Gradient";
 import Footer from "@/app/components/Footer";
@@ -14,9 +11,17 @@ export const metadata = {
   description: 'Portfolio website'
 }
 
-export default function Home() {
-  const workData = WorkInfo.Work
-  const portfolioData = PortfolioInfo.Portfolio
+export default async function Home() {
+  const [portfolioRes, workRes] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio/highlights?size=100`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works?size=100`),
+  ])
+
+  const portfolioJson = await portfolioRes.json()
+  const workJson = await workRes.json()
+
+  const portfolioData = portfolioJson.data
+  const workData = workJson.data
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
@@ -108,7 +113,7 @@ there are still a lot to learn!</p>
                   </tr>
                 </thead> */}
                 <tbody>
-                  {portfolioData.filter((item) => (item.highlight)).map((item, index) => (
+                  {portfolioData.map((item, index) => (
                     <tr key={index} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-[#31ecff]">
                       <td className="px-4 py-5 text-sm text-[#ccdbe0] align-top w-32">{item.year}</td>
                       <td className="px-4 py-5 flex flex-col gap-4">
