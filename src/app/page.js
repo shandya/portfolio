@@ -13,8 +13,8 @@ export const metadata = {
 
 export default async function Home() {
   const [portfolioRes, workRes] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio/highlights?size=100`),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works?size=100`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/portfolio/highlights?size=100`, { cache: 'no-store' }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works?size=100`, { cache: 'no-store' }),
   ])
 
   const portfolioJson = await portfolioRes.json()
