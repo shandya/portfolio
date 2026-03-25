@@ -9,7 +9,9 @@
       "Bash(git -C /d/www/portfolio show feat/notion-api-integration:src/app/archive/page.js)",
       "Bash(git -C /d/www/portfolio show feat/notion-api-integration:src/app/page.js)",
       "Bash(git -C /d/www/portfolio show feat/notion-api-integration:src/app/api/work/route.js)",
-      "Bash(git -C /d/www/portfolio show feat/notion-api-integration:package.json)"
+      "Bash(git -C /d/www/portfolio show feat/notion-api-integration:package.json)",
+      "Bash(npm install @tiptap/react @tiptap/pm @tiptap/starter-kit)",
+      "Bash(npm list @tiptap/react @tiptap/pm @tiptap/starter-kit)"
     ]
   }
 }
