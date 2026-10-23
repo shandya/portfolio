@@ -32,3 +32,22 @@ export interface ApiList<T> {
 }
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
+
+export type PostStatus = 'draft' | 'published';
+
+export interface PostSummary {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  cover_url: string;
+  tags: string;
+  status: PostStatus;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Post extends PostSummary {
+  content: string;
+}

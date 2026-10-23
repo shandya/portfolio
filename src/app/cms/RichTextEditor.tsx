@@ -33,16 +33,34 @@ function ToolbarButton({
 
 export default function RichTextEditor({ name, defaultValue = "" }: { name: string; defaultValue?: string }) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit.configure({
+        heading: { levels: [2, 3] },
+        link: { openOnClick: false, autolink: true, protocols: ["http", "https", "mailto"] },
+      }),
+    ],
     content: defaultValue,
     immediatelyRender: false,
+    // Re-render on every change so the hidden input and toolbar state stay in sync
+    shouldRerenderOnTransaction: true,
     editorProps: {
       attributes: {
         class:
-          "min-h-[120px] px-3 py-2 text-sm text-fg focus:outline-none",
+          "min-h-[120px] px-3 py-2 text-sm text-fg focus:outline-none prose prose-invert prose-sm max-w-none prose-p:text-fg prose-li:text-fg prose-headings:text-accent prose-a:text-accent prose-code:text-accent",
       },
     },
   });
+
+  function toggleLink() {
+    if (!editor) return;
+    if (editor.isActive("link")) {
+      editor.chain().focus().unsetLink().run();
+      return;
+    }
+    const url = window.prompt("Link URL (https://…)");
+    if (!url) return;
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  }
 
   // Reset content when defaultValue changes (e.g. opening a different item)
   useEffect(() => {
@@ -92,6 +110,14 @@ export default function RichTextEditor({ name, defaultValue = "" }: { name: stri
         <span className="w-px bg-accent bg-opacity-20 mx-1" />
         <ToolbarButton
           onClick={() =>
+            editor?.chain().focus().toggleHeading({ level: 2 }).run()
+          }
+          active={editor?.isActive("heading", { level: 2 })}
+        >
+          H2
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() =>
             editor?.chain().focus().toggleHeading({ level: 3 }).run()
           }
           active={editor?.isActive("heading", { level: 3 })}
@@ -103,6 +129,15 @@ export default function RichTextEditor({ name, defaultValue = "" }: { name: stri
           active={editor?.isActive("paragraph")}
         >
           P
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
+          active={editor?.isActive("codeBlock")}
+        >
+          {"</>"}
+        </ToolbarButton>
+        <ToolbarButton onClick={toggleLink} active={editor?.isActive("link")}>
+          Link
         </ToolbarButton>
         <span className="w-px bg-accent bg-opacity-20 mx-1" />
         <ToolbarButton

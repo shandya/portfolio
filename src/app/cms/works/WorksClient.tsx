@@ -98,19 +98,21 @@ export default function WorksClient({ initialData }: { initialData: Work[] }) {
                 <td className="py-3 pr-4">{item.company_name}</td>
                 <td className="py-3 pr-4">{item.location}</td>
                 <td className="py-3 pr-4 whitespace-nowrap">{item.time}</td>
-                <td className="py-3 flex gap-3">
-                  <button
-                    onClick={() => openEdit(item)}
-                    className="text-accent text-xs underline underline-offset-2 opacity-60 hover:opacity-100"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="text-red-400 text-xs underline underline-offset-2 opacity-60 hover:opacity-100"
-                  >
-                    Delete
-                  </button>
+                <td className="py-3 align-middle">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => openEdit(item)}
+                      className="text-accent text-xs underline underline-offset-2 opacity-60 hover:opacity-100"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="text-red-400 text-xs underline underline-offset-2 opacity-60 hover:opacity-100"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

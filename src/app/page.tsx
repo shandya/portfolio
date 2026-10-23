@@ -3,28 +3,38 @@ import Link from 'next/link'
 import Gradient from "@/app/components/Gradient";
 import Footer from "@/app/components/Footer";
 import { apiGet } from '@/lib/api';
-import type { ApiList, PortfolioItem, Work } from '@/types';
+import { SITE_NAME, SITE_URL, SOCIAL_LINKS, formatDate } from '@/lib/site';
+import JsonLd from '@/app/components/JsonLd';
+import type { ApiList, PortfolioItem, PostSummary, Work } from '@/types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export const metadata = {
-  title: 'Shandy Ardiansyah',
-  description: 'Portfolio website'
-}
-
 export default async function Home() {
-  const [portfolioResult, workResult] = await Promise.allSettled([
+  const [portfolioResult, workResult, postsResult] = await Promise.allSettled([
     apiGet<ApiList<PortfolioItem>>('/portfolio/highlights?size=100'),
     apiGet<ApiList<Work>>('/works?size=100'),
+    apiGet<ApiList<PostSummary>>('/posts?size=3'),
   ])
 
   const portfolioData = portfolioResult.status === 'fulfilled' ? portfolioResult.value.data : []
   const workData = workResult.status === 'fulfilled' ? workResult.value.data : []
+  // Blog is optional on the homepage: hide the section quietly if it fails or is empty
+  const posts = postsResult.status === 'fulfilled' ? postsResult.value.data : []
   const loadFailed = portfolioResult.status === 'rejected' || workResult.status === 'rejected'
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:py-12">
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: SITE_NAME,
+          jobTitle: 'Frontend Developer',
+          url: SITE_URL,
+          sameAs: SOCIAL_LINKS,
+        }}
+      />
       <section className="px-4 w-full lg:fixed top-0 left-0 z-50">
         <header className="max-w-screen-xl mx-auto relative">
           <div className="w-full md:w-1/2 lg:absolute left-0 py-6 md:py-16 lg:py-24">
@@ -44,6 +54,9 @@ export default async function Home() {
                 </li>
                 <li>
                   <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/archive">Archive</Link>
+                </li>
+                <li>
+                  <Link className="opacity-60 hover:opacity-100 ease-in transition-all duration-150" href="/blog">Blog</Link>
                 </li>
               </ul>
             </nav>
@@ -147,6 +160,35 @@ there are still a lot to learn!</p>
           </div>
         </div>
       </section>
+
+      {posts.length > 0 && (
+        <section id="writing" className="py-10 md:py-12 relative z-20 w-full">
+          <div className="max-w-screen-xl mx-auto">
+            <div className="w-full md:w-1/2 ml-auto px-4">
+              <h2 className="text-accent opacity-60 text-lg mb-4 font-semibold">Writing</h2>
+
+              <div className="-mx-4">
+                <table className="w-full">
+                  <tbody>
+                    {posts.map((post) => (
+                      <tr key={post.id} className="border-b border-slate-300 border-opacity-30 opacity-60 hover:opacity-100 ease-in transition-all duration-150 text-accent">
+                        <td className="px-4 py-5 text-sm text-fg align-top whitespace-nowrap w-32">{formatDate(post.published_at)}</td>
+                        <td className="px-4 py-5">
+                          <Link href={`/blog/${post.slug}`} className="flex flex-col gap-2">
+                            <h3 className="font-semibold leading-tight">{post.title}</h3>
+                            {post.excerpt && <p className="leading-snug text-sm text-fg">{post.excerpt}</p>}
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <Link href="/blog" className="mt-8 inline-block text-fg text-sm">All posts</Link>
+            </div>
+          </div>
+        </section>
+      )}
 
 
       <Footer />

@@ -24,6 +24,9 @@ export default function CmsNav() {
         <Link href="/cms/works" className={linkClass('/cms/works')}>
           Works
         </Link>
+        <Link href="/cms/posts" className={linkClass('/cms/posts')}>
+          Posts
+        </Link>
         <a
           href="/api/cms/auth?logout=true"
           className="text-sm opacity-60 hover:opacity-100 transition-all duration-150 ml-auto"

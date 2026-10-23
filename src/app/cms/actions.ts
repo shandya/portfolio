@@ -29,7 +29,11 @@ async function request(path: string, method: 'POST' | 'PUT' | 'DELETE', body?: o
     });
     if (!res.ok) {
       const json = await res.json().catch(() => ({}));
-      throw new Error(json.error || `Request failed (${res.status})`);
+      // Surface the first field-level validation message, e.g. "slug: Use lowercase letters..."
+      const details = json.details as Record<string, string[]> | undefined;
+      const field = details && Object.keys(details)[0];
+      const detail = field ? `${field}: ${details[field][0]}` : '';
+      throw new Error([json.error || `Request failed (${res.status})`, detail].filter(Boolean).join(' — '));
     }
     revalidateTag(API_TAG);
     return { ok: true };
@@ -83,4 +87,28 @@ export async function updateWork(id: number, formData: FormData) {
 
 export async function deleteWork(id: number) {
   return request(`/works/${id}`, 'DELETE');
+}
+
+// ─── POSTS ───────────────────────────────────────────────────────────────────
+
+const postBody = (formData: FormData) => ({
+  title: formData.get('title'),
+  slug: formData.get('slug'),
+  excerpt: formData.get('excerpt'),
+  content: formData.get('content'),
+  cover_url: formData.get('cover_url'),
+  tags: formData.get('tags'),
+  status: formData.get('status'),
+});
+
+export async function createPost(formData: FormData) {
+  return request('/posts', 'POST', postBody(formData));
+}
+
+export async function updatePost(id: number, formData: FormData) {
+  return request(`/posts/${id}`, 'PUT', postBody(formData));
+}
+
+export async function deletePost(id: number) {
+  return request(`/posts/${id}`, 'DELETE');
 }

@@ -1,3 +1,9 @@
-export default function robots(): import('next').MetadataRoute.Robots {
-  return { rules: { userAgent: '*', allow: '/', disallow: ['/cms', '/api'] } };
+import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: '*', allow: '/', disallow: ['/cms', '/api'] },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
 }
